@@ -156,6 +156,8 @@ return [
     */
 
     'providers' => ServiceProvider::defaultProviders()->merge([
+        
+         CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class, 
         /*
          * Package Service Providers...
          */
