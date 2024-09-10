@@ -9,7 +9,6 @@
     <body>
         <h1>{{$month}}月</h1>
         <div class='posts'>
-          <h2>{{$month}}月</h2>
             @foreach ($dates as $date )
                 <a href="/posts/{{ $year }}/{{ $month }}/{{ $date }}">{{ $date }}日</a>
             @endforeach

@@ -14,11 +14,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // \App\Models\User::factory(10)->create();
-               $this->call([
-                   YearSeeder::class,
-                   MonthSeeder::class,
-                   DaySeeder::class,
-                    PostSeeder::class,
+        $this->call([
+            YearSeeder::class,
+            MonthSeeder::class,
+            DaySeeder::class,
+            UserSeeder::class,
+            PostSeeder::class,
         ]);    
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
