@@ -26,6 +26,7 @@
             <!-- ここから追加 -->
             <div>
                 <img src="{{ $post->image_url }}" alt="画像が読み込めません。">
+                <input type="submit" value="保存"/>
             </div>
             <!-- ここまで追加 -->
         </div>

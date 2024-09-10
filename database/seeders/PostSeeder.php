@@ -15,14 +15,16 @@ class PostSeeder extends Seeder
     public function run(): void
     {
           DB::table('posts')->insert([
-                'user_id' => 1,
+                'title'=>1,
+                'body' =>1,           
+                //'user_id' => 1,
                 'year_id' => 1,
                 'month_id' => 1,
                 'day_id' => 1,
                 'image_url' => 'test_url',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
-                'deleted_at' => null
+                
          ]);
     }
 }

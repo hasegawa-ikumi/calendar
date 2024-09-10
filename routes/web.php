@@ -29,11 +29,15 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/', [PostController::class, 'index']); 
+Route::get('/', [PostController::class, 'yearIndex']); 
+Route::get('/index/{year}', [PostController::class, 'index']); 
 Route::get('/create/{year}/{month}', [PostController::class, 'create']);
-Route::post('/posts', [PostController::class, 'store']); 
-Route::get('/index/{year}/{month}', [PostController::class, 'month']);
+Route::post('/posts/', [PostController::class, 'store']); 
+Route::get('/posts/{year}/{month}/{date}', [PostController::class, 'show2']);
+Route::get('/index/{year}/{month}', [PostController::class, 'month'])->name('month');
 Route::get('/posts/{post}', [PostController::class, 'show']);
+//Route::get('/posts/{year}/{month}/{date｝', [PostController::class, 'day']);
+//Route::get('/posts/{year}/{month}/{date}', [PostController::class, 'create']);
+Route::get('/posts/{post}/edit',[PostController::class,'edit']);
+Route::delete('/posts/{post}',[PostController::class,'delete']);
 require __DIR__.'/auth.php';
-
-Route::get('/posts/{year}/{month}/{day}', [PostController::class, 'day']);

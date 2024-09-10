@@ -6,23 +6,23 @@
     </head>
     <body>
         <h1>Blog Name</h1>
-        <form action="/posts" method="POST" enctype="multipart/form-data">
+        <form action="/posts/{{ $post->id }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             
-           <div class="day">  
+           <div class="day">
              <h2>日付</h2>
-             <input type='hidden' value="{{$month->id }}" name="post[month_id]"/>{{$month->month}}
-             <select name="post[day_id]">
+             <select name="day">
             @foreach ($days as $day)
             @if($posts->contains('day_id',$day->id))
-               <option value="{{ $day->id }}" disabled name="post[day_id]">{{ $day->day }}</option>
+               <option value="{{ $day->id }}" disabled>{{ $day->day }}</option>
             @else
-              <option value="{{$day->id }}" name="post[day_id]">{{$day->day }}</option>
+              <option value="{{$day->id }}">{{$day->day }}</option>
             @endif
             @endforeach
             <div class="title">
                 <h3>Title</h3>
-                <input type="text" name="post[title]" placeholder="タイトル"/>
+                <input type="text" name="post[title]" placeholder="タイトル" value={{ $post->title }} >
             </div>
             <div class="body">
                 <h4>Body</h4>
@@ -31,10 +31,10 @@
             <div class="image">
                 <input type="file" name="image">
             </div>
-            <input type="submit" value="保存"/>
+            <input type="submit" value="edit"/>
         </form>
         <div class="footer">
-            <a href="/">戻る</a>
+            <a href="/posts{{ $post->id}}">戻る</a>
         </div>
     </body>
 </html>

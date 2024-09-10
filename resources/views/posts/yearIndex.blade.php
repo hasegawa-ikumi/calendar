@@ -9,11 +9,9 @@
     <body>
         <h1>目次</h1>
         <div class='posts'>
-          <h2>{{$year}}年</h2>
-          @for($i= 1; $i < 13; $i++)
-             <a href="/index/{{$year}}/{{ $i }}">{{ $i }}月</a>
+          @for($i= 2020; $i < 2027; $i++)
+             <a href="/index/{{ $i }}">{{ $i }}年</a>
             @endfor
-    
         </div>
     
     </body>

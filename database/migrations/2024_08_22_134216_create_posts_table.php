@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table)
+        {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('year_id')->constrained();
-            $table->foreignId('month_id')->constrained();
-            $table->foreignId('day_id')->constrained();
+            $table->string('title', 50);
+            $table->text('body',200);
             $table->string('image_url');
+            //$table->foreignId('user_id')->constrained();
+            $table->foreignId('year_id')->constrained()->unique();
+            $table->foreignId('month_id')->constrained()->unique();
+            $table->foreignId('day_id')->constrained()->unique();
             $table->timestamps();
             $table->softDeletes();
      });
