@@ -8,9 +8,9 @@ use App\Models\titles;
 use App\Models\bodys;
 use App\Models\image_url;
 use Cloudinary;
-use App\Models\year;
-use App\Models\months;
-use App\Models\days;
+use App\Models\Year;
+use App\Models\Month;
+use App\Models\Day;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,22 +32,24 @@ class PostController extends Controller
     }
     
     
-    public function create(Post $post, $year, months $month, days $day)
+    public function create(Post $post, $year, $month,Day $day)
     {
-        $year=$year-2019;
-       
-        if($month->id == 1 || $month->id == 3 || $month->id == 5 || $month->id == 7 || $month->id == 8 || $month->id == 10 || $month->id == 12){
+      
+        if($month == 1 || $month == 3 || $month == 5 || $month == 7 || $month == 8 || $month == 10 || $month == 12){
             $days = $day->whereBetween('day', [1,31])->get();  
-        }elseif($month->id == 4 || $month->id == 6 || $month->id == 9 || $month->id == 11){
+        }elseif($month == 4 || $month == 6 || $month == 9 || $month == 11){
             $days = $day->whereBetween('day', [1,30])->get();
-        }elseif($month->id == 2 && $year->id%4 == 1){
+        }elseif($month == 2 && $year%4 == 1){
             $days = $day->whereBetween('day', [1,29])->get();
-        }elseif($month->id == 2 && $year->id%4 != 1){
+        }elseif($month == 2 && $year%4 != 1){
             $days = $day->whereBetween('day', [1,28])->get();
         }
         
-        $posts = $post->where('year_id', $year)->where('month_id', $month->id)->get();
+        $year=$year-2019;
         
+        $posts = $post->where('year_id', $year)->where('month_id', $month)->get();
+        $month_0= Month::where('id',$month)->get();
+        $month=$month_0[0];
         return view('posts.create')->with(['days' => $days, 'month' => $month, 'year' => $year,'posts'=> $posts]);
     }
 
@@ -62,9 +64,6 @@ class PostController extends Controller
 //dd($request);
         $input += ['image_url' => $image_url];  
    
-        $year_id=1;
-
-        $input += ['year_id' => $year_id];
 
         $month_id = request()->query('month_id');
         $year_id = request()->query('year_id'); 
