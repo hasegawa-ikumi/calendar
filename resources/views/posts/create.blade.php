@@ -10,8 +10,9 @@
             @csrf
             
            <div class="day">  
+           <input type='hidden' value="{{$year}}" name="post[year_id]"/>
              <h2>日付</h2>
-             <input type='hidden' value="{{$month->id }}" name="post[month_id]"/>{{$month->month}}
+             <input type='hidden' value="{{$month->id }}" name="post[month_id]"/>{{$year+2019}}年{{$month->month}}
              <select name="post[day_id]">
             @foreach ($days as $day)
             @if($posts->contains('day_id',$day->id))
